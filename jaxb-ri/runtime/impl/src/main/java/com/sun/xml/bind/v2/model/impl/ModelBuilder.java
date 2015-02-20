@@ -239,10 +239,12 @@ public class ModelBuilder<T,C,F,M> implements ModelBuilderI<T,C,F,M> {
             return r;
 
         if(nav.isEnum(clazz)) {
+          if(((Class)clazz).getEnumConstants() != null){
             EnumLeafInfoImpl<T,C,F,M> li = createEnumLeafInfo(clazz,upstream);
             typeInfoSet.add(li);
             r = li;
             addTypeName(r);
+          }
         } else {
             boolean isReplaced = subclassReplacements.containsKey(clazz);
             if(isReplaced && !searchForSuperClass) {
